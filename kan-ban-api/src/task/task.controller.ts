@@ -10,6 +10,11 @@ import { CreateTaskDTO } from './dto/creat-task.dto';
 export class TaskController {
   constructor(private readonly taskService: TaskService){}
 
+  @Get()
+  getAllTasks(){
+    this.taskService.getAllTasks();
+  }
+
   @Delete()
   deleteTasks(@Body() idList: string[]){
     this.taskService.deleteTasks(idList);

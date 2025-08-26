@@ -13,6 +13,10 @@ export class TaskService {
     private taskRepository: Repository<Task>
   ){}
 
+  async getAllTasks(): Promise<Task[]>{
+    return this.taskRepository.find();
+  }
+
   async deleteTasks(idList: string[]): Promise<void>{
     const toNumber = idList.map(id => Number(id));
     this.taskRepository.delete(toNumber);

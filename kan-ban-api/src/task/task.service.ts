@@ -13,6 +13,15 @@ export class TaskService {
     private taskRepository: Repository<Task>
   ){}
 
+  async deleteTasks(idList: string[]): Promise<void>{
+    const toNumber = idList.map(id => Number(id));
+    this.taskRepository.delete(toNumber);
+  }
+
+  async deleteTask(id: string): Promise<void>{
+    this.taskRepository.delete(Number(id));
+  }
+
   async create(createTaskDTO: CreateTaskDTO): Promise<Task>{
     const task = this.taskRepository.create(createTaskDTO);
     return this.taskRepository.save(task);
